@@ -1,30 +1,23 @@
-name: Example workflow for Node using Snyk
-on: push
+name: ci
+
+on:
+  push:
+    branches:
+      - 'main'
 
 jobs:
-  
-  build_container:
+  docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Build Docker Image
-        id: docker_build
-        uses: docker/build-push-action@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
         with:
           push: false
-          load: true
-          tags: goof:PROD         
-      - name: Snyk Container Test
-        continue-on-error: true
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ Secrets.SNYK_TOKEN }}
-        with:
-          image: goof:PROD
-          args: --file=app/Dockerfile
-      - name: Upload Container Scan results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: snyk.sarif
+          tags: user/app:latest
