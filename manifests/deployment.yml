@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: aws-example-octodex
-        image: 456403635917.dkr.ecr.us-east-1.amazonaws.com/example-eks:f8e12810c546e153b6f005085eb0df7e2ecbfff3
+        image: 456403635917.dkr.ecr.us-east-1.amazonaws.com/example-eks:642ebd7f358df61db7f3f1204277177ca5ff8217
         #image: REGISTRY/IMAGE:TAG
         ports:
         - containerPort: 5000
