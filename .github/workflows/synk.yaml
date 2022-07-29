@@ -16,6 +16,7 @@ jobs:
     - name: Build a Docker image
       run: docker build -t your/image-to-test:latest app/
     - name: Run Snyk to check Docker image for vulnerabilities
+      id: result
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
       continue-on-error: true
@@ -27,4 +28,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: your/image-to-test:latest
-        args: --severity-threshold=critical
+        
+        #args: --severity-threshold=critical
+        json | jq '.vulnerabilities[] |= if(.cvssScore) > 8.0 then "CVSS score \(.cvssScore) \(.id)"|halt_error(1) else "CVSS Score: \(.cvssScore) Vulnerability:\(.id)" end'
+      
