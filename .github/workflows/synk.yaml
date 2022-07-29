@@ -28,7 +28,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: your/image-to-test:latest
-        
-        #args: --severity-threshold=critical
-        json | jq '.vulnerabilities[] |= if(.cvssScore) > 8.0 then "CVSS score \(.cvssScore) \(.id)"|halt_error(1) else "CVSS Score: \(.cvssScore) Vulnerability:\(.id)" end'
-      
+        args: --severity-threshold=critical
+        #json | jq '.vulnerabilities[] |= if(.cvssScore) > 8.0 then "CVSS score \(.cvssScore) \(.id)"|halt_error(1) else "CVSS Score: \(.cvssScore) Vulnerability:\(.id)" end'
+    - if: steps.result.exitcode >0
+      run: exit 1
