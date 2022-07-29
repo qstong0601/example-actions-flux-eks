@@ -17,7 +17,7 @@ jobs:
     - name: Build and tag the image
       run: |
         # Build and tag the image
-        docker build \
+        docker build app/ \
           -t app:v1
     - name: Snyk Container Test
       continue-on-error: true
