@@ -20,11 +20,11 @@ jobs:
         docker build \
           -t app:v1
     - name: Snyk Container Test
-       continue-on-error: true
-       uses: snyk/actions/docker@master
-       env:
-         SNYK_TOKEN: ${{ Secrets.SNYK_TOKEN }}
-       with:
-         image: app:v1
-         args: --file=Dockerfile
+      continue-on-error: true
+      uses: snyk/actions/docker@master
+      env:
+        SNYK_TOKEN: ${{ Secrets.SNYK_TOKEN }}
+      with:
+        image: app:v1
+        args: --file=Dockerfile
   
