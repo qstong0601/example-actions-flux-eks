@@ -32,3 +32,7 @@ jobs:
         #json | jq '.vulnerabilities[] |= if(.cvssScore) > 8.0 then "CVSS score \(.cvssScore) \(.id)"|halt_error(1) else "CVSS Score: \(.cvssScore) Vulnerability:\(.id)" end'
     #- if: steps.result.exitcode == 0
     #  run: exit 1
+    - if: failure()
+      run: exit 1
+    - if: success()
+      run: exit 0
