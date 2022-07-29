@@ -28,7 +28,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         #CONTAINER_IMAGE2: $CONTAINER_IMAGE
       with:
-        command: fix
+        command: test
         image: ${{env.CONTAINER_IMAGE}}
         args: --severity-threshold=high
 
