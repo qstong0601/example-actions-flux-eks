@@ -28,4 +28,3 @@ jobs:
       with:
         image: your/image-to-test:latest
         args: --severity-threshold=critical
-        command: monitor
