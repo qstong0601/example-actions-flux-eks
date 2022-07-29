@@ -1,0 +1,21 @@
+name: Check for Open Source Vulnerabilities with Snyk
+on:
+  pull_request:
+    paths:
+    - app/**
+  push:
+    paths:
+    - app/**
+    branches:         # array of glob patterns matching against refs/heads. Optional; defaults to all
+    - master          # triggers on pushes that contain changes in master
+jobs:
+  oss-security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Check for High Severity OSS Vulnerabilities
+      uses: snyk/actions/node@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=high --fail-on=upgradable
