@@ -27,4 +27,13 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         image: your/image-to-test:latest
+        args: --severity-threshold=critical
+        
+        
+        
+        
+        
+        
+        
+        
         command: monitor
