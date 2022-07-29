@@ -23,7 +23,7 @@ jobs:
           SNYK_TOKEN: ${{ Secrets.SNYK_TOKEN }}
         with:
           image: goof:PROD
-          args: --file=Dockerfile
+          args: --file=app/Dockerfile
       - name: Upload Container Scan results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v1
         with:
