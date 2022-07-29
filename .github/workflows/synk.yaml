@@ -8,18 +8,23 @@ on:
     branches:         # array of glob patterns matching against refs/heads. Optional; defaults to all
     - master          # triggers on pushes that contain changes in master
 jobs:
-  docker:
+  build:
+    name: Build the image
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      -
-        name: Build and push
-        uses: docker/build-push-action@v3
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Build and tag the image
+      run: |
+        # Build and tag the image
+        docker build \
+          -t app:v1
+    - name: Snyk Container Test
+        continue-on-error: true
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ Secrets.SNYK_TOKEN }}
         with:
-          push: false
-          tags: user/app:latest
+          image: app:v1
+          args: --file=Dockerfile
+  
