@@ -27,8 +27,8 @@ jobs:
         # or you can signup for free at https://snyk.io/login
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: your/image-to-test:high
-        args: --severity-threshold=critical
+        image: your/image-to-test:latest
+        args: --severity-threshold=high
         #json | jq '.vulnerabilities[] |= if(.cvssScore) > 8.0 then "CVSS score \(.cvssScore) \(.id)"|halt_error(1) else "CVSS Score: \(.cvssScore) Vulnerability:\(.id)" end'
     #- if: steps.result.exitcode == 0
     #  run: exit 1
