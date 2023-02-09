@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aws-example-octodex
+  namespace: default
   annotations:
     fluxcd.io/automated: "true"
 spec:
