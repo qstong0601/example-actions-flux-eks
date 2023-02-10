@@ -26,12 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Get the current date/time
-      id: date
-      #run: echo "epoctime=$(date +%s)"
-      run: echo "EPOCTIME=$(date +%s)" >> ${GITHUB_ENV}
-      #run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
-      shell: bash
+#     - name: Get the current date/time
+#       id: date
+#       #run: echo "epoctime=$(date +%s)"
+#       run: echo "EPOCTIME=$(date +%s)" >> ${GITHUB_ENV}
+#       #run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+#       shell: bash
 
 
 
@@ -42,8 +42,7 @@ jobs:
 
     - name: Set environment variable
      # run: echo "::set-env name=EPOCTIME::${{ steps.date.outputs.EPOCTIME }}"
-      env:
-        ONTAINER_IMAGE: example-eks:${{ github.sha }}-${{ github.ref_name }}-$EPOCTIME
+      run: echo "CONTAINER_IMAGE=${{ github.sha }}-${{ github.ref_name }}-$(date +%s)" >> ${GITHUB_ENV}
       
       
     - name: Checkout
