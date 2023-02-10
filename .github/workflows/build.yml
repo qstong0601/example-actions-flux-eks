@@ -26,14 +26,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
+#     - name: Get the current date/time
+#       id: date
+#       #run: echo "epoctime=$(date +%s)"
+#       run: echo "::set-output name=epoctime::$(date +'%s')"
+#       #run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+#       shell: bash
+#       env:
+#         EPOCTIME: ${{ steps.date.outputs.EPOCTIME }}
+
+
     - name: Get the current date/time
       id: date
-      #run: echo "epoctime=$(date +%s)"
-      run: echo "::set-output name=epoctime::$(date +'%s')"
-      #run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+      run: echo "EPOCTIME=$(date +%s)"
       shell: bash
-      env:
-        EPOCTIME: ${{ steps.date.outputs.EPOCTIME }}
+
+    - name: Set environment variable
+      run: echo "::set-env name=EPOCTIME::${{ steps.date.outputs.EPOCTIME }}"
       
     - name: Checkout
       uses: actions/checkout@master
