@@ -18,7 +18,7 @@ env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  CONTAINER_IMAGE: example-eks:${{ github.sha }}-${{ github.ref_name }}-$EPOCTIME
+#   CONTAINER_IMAGE: example-eks:${{ github.sha }}-${{ github.ref_name }}-$EPOCTIME
 
 jobs:
   build-and-push:
@@ -40,10 +40,11 @@ jobs:
 #       run: echo "EPOCTIME=$(date +%s)"
 #       shell: bash
 
-#     - name: Set environment variable
-#       run: echo "::set-env name=EPOCTIME::${{ steps.date.outputs.EPOCTIME }}"
+    - name: Set environment variable
+     # run: echo "::set-env name=EPOCTIME::${{ steps.date.outputs.EPOCTIME }}"
+      env:
+        ONTAINER_IMAGE: example-eks:${{ github.sha }}-${{ github.ref_name }}-$EPOCTIME
       
-
       
     - name: Checkout
       uses: actions/checkout@master
