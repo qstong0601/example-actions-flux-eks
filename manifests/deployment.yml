@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: aws-example-octodex
-        image: 456403635917.dkr.ecr.us-east-1.amazonaws.com/example-eks:09bfe6d001b04878380c43df082d0ce4a87988cb
+        image: 456403635917.dkr.ecr.us-east-1.amazonaws.com/example-eks:09bfe6d001b04878380c43df082d0ce4a87988cb # {"$imagepolicy": "flux-system:example-eks"}
         #image: REGISTRY/IMAGE:TAG
         ports:
         - containerPort: 5000
