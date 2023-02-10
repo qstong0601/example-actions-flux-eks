@@ -18,7 +18,7 @@ env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  CONTAINER_IMAGE: example-eks:${{ github.sha }}-${{ github.ref_name }}-${{ steps.date.outputs.epoctime }}
+  CONTAINER_IMAGE: example-eks:${{ github.sha }}-${{ github.ref_name }}-${{ steps.date.outputs.today }}
 
 jobs:
   build-and-push:
@@ -29,7 +29,8 @@ jobs:
     - name: Get the current date/time
       id: date
       #run: echo "epoctime=$(date +%s)"
-      run: echo "::set-output name=epoctime::$(date +'%s')"
+      #run: echo "::set-output name=epoctime::$(date +'%s')"
+      run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
       shell: bash
       
     - name: Checkout
