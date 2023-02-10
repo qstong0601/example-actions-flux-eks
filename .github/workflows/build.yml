@@ -28,7 +28,8 @@ jobs:
     
     - name: Get the current date/time
       id: date
-      run: echo "epoctime=$(date +%s)"
+      #run: echo "epoctime=$(date +%s)"
+      run: echo "::set-output name=epoctime::$(date +'%s')"
       shell: bash
       
     - name: Checkout
