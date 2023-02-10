@@ -42,7 +42,7 @@ jobs:
 
     - name: Set environment variable
      # run: echo "::set-env name=EPOCTIME::${{ steps.date.outputs.EPOCTIME }}"
-      run: echo "CONTAINER_IMAGE=${{ github.sha }}-${{ github.ref_name }}-$(date +%s)" >> ${GITHUB_ENV}
+      run: echo "CONTAINER_IMAGE=example-eks:${{ github.sha }}-${{ github.ref_name }}-$(date +%s)" >> ${GITHUB_ENV}
       
       
     - name: Checkout
